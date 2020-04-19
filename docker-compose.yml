@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+   php:
+      build: php
+      ports:
+        - "80:80"
+      volumes:
+        - ./php/www:/var/www/html
+      links:
+        - db 
+
+   db:
+     image: hypriot/rpi-mysql
+     volumes:
+      - my-db:/var/lib/mysql
+     environment:
+      - MYSQL_ROOT_PASSWORD=kinano4
+      - MYSQL_DATABASE=dbtablesadmin 
+  
+# name our volumes
+volumes:
+  my-db:
